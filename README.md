@@ -1,4 +1,4 @@
-# BITFIELD — algorithmic VGA demoscene for Tiny Tapeout
+# BITFIELD — MathHacks 2026.
 
 A one-tile Tiny Tapeout chip that renders live mathematical art on a VGA
 screen. There is no framebuffer and no stored artwork: every pixel is

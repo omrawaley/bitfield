@@ -28,7 +28,7 @@ export const hardwareManifest: HardwareManifest = {
       kind: 'toggle',
       msb: 4,
       lsb: 4,
-      hint: 'Off: the chip runs its autonomous LFSR show. On: the controls below steer it.',
+      hint: 'Off: the chip runs its autonomous gallery — a new pattern about once per second. On: the controls below steer it.',
     },
     {
       id: 'pattern',

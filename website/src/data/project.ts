@@ -7,6 +7,5 @@ export const project = {
   team: ["Om Rawaley"] as string[],
   links: {
     repository: "https://github.com/omrawaley/bitfield",
-    tinyTapeoutProject: "",
   },
 };

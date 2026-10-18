@@ -231,21 +231,6 @@ p {
   color: var(--text-3);
 }
 
-.placeholder {
-  border: 1px dashed var(--border-strong);
-  color: var(--text-3);
-  padding: 14px 16px;
-  font-size: var(--fs-small);
-}
-.placeholder b {
-  color: var(--text-2);
-  font-weight: 500;
-}
-
-body.presenting .dev-only {
-  display: none !important;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

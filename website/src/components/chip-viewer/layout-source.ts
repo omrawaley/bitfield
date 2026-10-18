@@ -1,9 +1,3 @@
-export interface LayoutLayer {
-  id: string;
-  name: string;
-  color: string;
-}
-
 export interface LayoutLink {
   label: string;
   href: string;
@@ -11,9 +5,8 @@ export interface LayoutLink {
 
 export interface ChipLayoutSource {
   generatedBy: string;
-  image?: { src: string; alt: string };
+  image: { src: string; alt: string };
   links?: LayoutLink[];
-  model?: { src: string; layers: LayoutLayer[] };
 }
 
 // Published by the `pages` job of .github/workflows/gds.yaml: it deploys the
@@ -22,7 +15,7 @@ export interface ChipLayoutSource {
 // and this turns on automatically after the first successful GDS build.
 const PAGES = 'https://omrawaley.github.io/bitfield';
 
-export const layoutSource: ChipLayoutSource | null = {
+export const layoutSource: ChipLayoutSource = {
   generatedBy: 'Tiny Tapeout GDS action — LibreLane on sky130A, GitHub Actions',
   image: {
     src: `${PAGES}/gds/gds_render.png`,

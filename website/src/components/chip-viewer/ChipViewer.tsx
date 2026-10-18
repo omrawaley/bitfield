@@ -2,16 +2,6 @@ import { KeyboardEvent, PointerEvent, WheelEvent, useRef, useState } from 'react
 import { Button } from '../controls/Controls';
 import { ChipLayoutSource, layoutSource } from './layout-source';
 
-const PLANNED_CONTROLS = [
-  ['Rotate / pan / zoom', 'orbit camera around the die'],
-  ['2D ⇄ 3D', 'top-down plan or perspective stack'],
-  ['Layers', 'show / hide each process layer'],
-  ['Isolate', 'solo one layer, e.g. met1'],
-  ['Opacity', 'per-layer transparency'],
-  ['Explode', 'separate layers vertically'],
-  ['Reset camera', 'return to the default view'],
-];
-
 function ImageViewer({ src, alt, onError }: { src: string; alt: string; onError?: () => void }) {
   const [view, setView] = useState({ s: 1, x: 0, y: 0 });
   const drag = useRef<{ x: number; y: number } | null>(null);
@@ -76,50 +66,32 @@ function ImageViewer({ src, alt, onError }: { src: string; alt: string; onError?
   );
 }
 
-export function ChipViewer({ source = layoutSource }: { source?: ChipLayoutSource | null }) {
+export function ChipViewer({ source = layoutSource }: { source?: ChipLayoutSource }) {
   const [imageFailed, setImageFailed] = useState(false);
-  const image = source?.image && !imageFailed ? source.image : null;
   return (
     <div className="panel chip-viewer">
       <div className="panel-head">
         <span className="tag">VIEWER</span> Physical layout
         <span className="spacer" />
-        {image ? (
-          <span className="badge hw">Generated layout · from our flow</span>
-        ) : source?.image ? (
-          <span className="badge muted">Awaiting first GDS build</span>
-        ) : (
-          <span className="badge muted">Not connected</span>
-        )}
+        {imageFailed ? <span className="badge err">Render unavailable</span> : <span className="badge hw">Generated layout · from our flow</span>}
       </div>
       <div className="cv-body">
         <div className="cv-stage">
-          {image ? (
-            <ImageViewer src={image.src} alt={image.alt} onError={() => setImageFailed(true)} />
-          ) : (
+          {imageFailed ? (
             <div className="cv-empty">
               <div className="cv-empty-grid" aria-hidden="true" />
               <div className="cv-empty-text">
-                {source?.image ? (
-                  <>
-                    <p className="cv-empty-title">The layout render will appear here.</p>
-                    <p>
-                      Every push runs the Tiny Tapeout GDS action, and its <code>viewer</code> job publishes the rendered layout to GitHub Pages. The first successful build — with Pages enabled once in the repository settings — turns this on automatically.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p className="cv-empty-title">Our physical layout will appear here.</p>
-                    <p>
-                      Once the design has been hardened, this viewer will show the GDS layout produced by our flow. That is a <strong>generated physical design</strong>, not a photograph of a fabricated chip. Until then nothing is shown here, rather than a made-up layout.
-                    </p>
-                  </>
-                )}
+                <p className="cv-empty-title">The generated layout could not be loaded.</p>
+                <p>
+                  The render is published with this site on GitHub Pages. If it is missing, the Pages deployment has not run yet — every push runs the <code>gds</code> workflow, and its <code>pages</code> job deploys the site, the render and the GDS/OAS files together.
+                </p>
               </div>
             </div>
+          ) : (
+            <ImageViewer src={source.image.src} alt={source.image.alt} onError={() => setImageFailed(true)} />
           )}
-          {source && <p className="cv-provenance">Source: {source.generatedBy}</p>}
-          {source?.links && (
+          <p className="cv-provenance">Source: {source.generatedBy}</p>
+          {source.links && (
             <p className="cv-links">
               {source.links.map((l) => (
                 <a key={l.href} className="btn btn-ghost" href={l.href} target="_blank" rel="noreferrer">
@@ -128,34 +100,26 @@ export function ChipViewer({ source = layoutSource }: { source?: ChipLayoutSourc
               ))}
             </p>
           )}
-          {source?.model && (
-            <p className="cv-provenance">A 3D model is configured ({source.model.src}), but the 3D renderer has not been built yet.</p>
-          )}
         </div>
         <aside className="cv-side">
-          <h4 className="label">Planned viewer controls</h4>
+          <h4 className="label">Viewer controls</h4>
           <dl className="cv-planned">
-            {PLANNED_CONTROLS.map(([k, v]) => (
-              <div key={k}>
-                <dt>{k}</dt>
-                <dd>{v}</dd>
-              </div>
-            ))}
+            <div>
+              <dt>Drag / arrow keys</dt>
+              <dd>pan the render</dd>
+            </div>
+            <div>
+              <dt>Scroll / ＋ −</dt>
+              <dd>zoom from 0.5× to 40×</dd>
+            </div>
+            <div>
+              <dt>Reset / 0</dt>
+              <dd>return to the default view</dd>
+            </div>
           </dl>
-          <div className="dev-only cv-integrate">
-            <h4 className="label">Integration</h4>
-            <ol>
-              <li>
-                Every push runs the <code>gds</code> workflow; its <code>pages</code> job builds this website and publishes it with <code>gds_render.png</code>, the <code>.gds</code> and the <code>.oas</code> under <code>/gds/</code> on GitHub Pages.
-              </li>
-              <li>
-                The published image URL is configured in <code>src/components/chip-viewer/layout-source.ts</code>; the 2D viewer turns on by itself after the first deploy.
-              </li>
-              <li>
-                The 3D links open Tiny Tapeout’s GDS viewer / explorer with the published <code>.oas</code>.
-              </li>
-            </ol>
-          </div>
+          <p className="cv-note">
+            For the 3D stack — orbit, layer isolation, explode — open the <strong>3D viewer</strong> link below the render, which loads our submitted <code>.oas</code> into Tiny Tapeout’s viewer. <strong>GDS Explorer</strong> shows every layer of the same file.
+          </p>
         </aside>
       </div>
     </div>

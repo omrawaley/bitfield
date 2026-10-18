@@ -63,7 +63,7 @@ it('renders the real Verilog design through the site simulator', async () => {
   sim.renderFrame(out, true);
   frames.push(Uint32Array.from(out));
 
-  // ~2 seconds later the LFSR has re-rolled the show at least twice
+  // ~2 seconds later the gallery has advanced at least twice
   for (let i = 0; i < 130; i++) sim.renderFrame(out, true);
   frames.push(Uint32Array.from(out));
 

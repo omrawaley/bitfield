@@ -2,9 +2,10 @@
 
 A 1x2 Tiny Tapeout chip that renders live mathematical art on a VGA
 screen. There is no framebuffer and no stored artwork: every pixel is
-evaluated in real time by a bitwise/sinusoidal function of `(x, y, t)`.
-A 16-bit LFSR acts as a virtual VJ — about once per second it re-rolls the
-pattern, palette and speed, so the show never stands still.
+evaluated in real time by a bitwise function of `(x, y, t)`.
+The chip plays a gallery: roughly once per second it advances to the next
+pattern — each opens with its own default palette and shift — while the
+time phase advances every frame, so the show never stands still.
 
 ![Animated demoscene](docs/img/plasma_animation.gif)
 

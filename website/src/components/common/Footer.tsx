@@ -10,7 +10,7 @@ export function Footer() {
           <p>
             {project.name} · {project.event}
           </p>
-          {project.team.length > 0 ? <p className="footer-dim">{project.team.join(' · ')}</p> : <p className="footer-dim dev-only">Team names: add them in src/data/project.ts</p>}
+          <p className="footer-dim">{project.team.join(' · ')}</p>
           {project.links.repository && (
             <p>
               <a href={project.links.repository}>Source repository ↗</a>
@@ -34,8 +34,9 @@ export function Footer() {
         <div>
           <div className="label">Acknowledgements</div>
           <p className="footer-dim">
-            Pin conventions and simulator architecture studied from the{' '}
-            <a href="https://github.com/TinyTapeout/vga-playground">Tiny Tapeout VGA Playground</a> (GPL-3.0; no code copied). Type: JetBrains Mono and IBM Plex Sans (SIL OFL).
+            Pin conventions, simulator architecture and the Verilator-WASM build come from the{' '}
+            <a href="https://github.com/TinyTapeout/vga-playground">Tiny Tapeout VGA Playground</a>; those components are vendored under{' '}
+            <code>website/src/vendor/vga-playground</code> (GPL-3.0). Type: JetBrains Mono and IBM Plex Sans (SIL OFL).
           </p>
         </div>
       </div>

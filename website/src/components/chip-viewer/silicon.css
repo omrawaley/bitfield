@@ -405,19 +405,16 @@
   color: var(--text-3);
   font-size: var(--fs-label);
 }
-.cv-integrate ol {
-  margin: 0;
-  padding-left: 18px;
+.cv-note {
+  margin: 14px 0 0;
   font-size: var(--fs-label);
   color: var(--text-3);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-family: var(--font-sans);
+  line-height: 1.6;
 }
-.cv-integrate code {
+.cv-note code,
+.cv-note strong {
   color: var(--text-2);
-  font-size: 0.95em;
+  font-weight: 500;
 }
 .cv-image-box {
   position: relative;

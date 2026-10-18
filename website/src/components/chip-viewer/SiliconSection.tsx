@@ -67,18 +67,12 @@ export function SiliconSection() {
           </dl>
           <div className="flow-artifact">
             <h4 className="label">Our artifact</h4>
-            {stage.artifacts.length === 0 ? (
-              <p className="placeholder">
-                <b>Awaiting:</b> {stage.awaiting}. <span className="dev-only">Add it to <code>src/data/silicon-stages.ts</code>.</span>
-              </p>
-            ) : (
-              stage.artifacts.map((a, i) => (
-                <figure key={i} className="artifact">
-                  {a.kind === 'image' ? <img src={a.src} alt={a.caption} /> : <pre>{a.content}</pre>}
-                  <figcaption>{a.caption}</figcaption>
-                </figure>
-              ))
-            )}
+            {stage.artifacts.map((a, i) => (
+              <figure key={i} className="artifact">
+                {a.kind === 'image' ? <img src={a.src} alt={a.caption} /> : <pre>{a.content}</pre>}
+                <figcaption>{a.caption}</figcaption>
+              </figure>
+            ))}
           </div>
           <div className="flow-nav">
             <button type="button" className="btn btn-ghost" disabled={active === 0} onClick={() => setActive(active - 1)}>

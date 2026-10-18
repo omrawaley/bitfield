@@ -8,7 +8,6 @@ export const SECTIONS = [
   { id: 'mathematics', index: '01', label: 'The Mathematics' },
   { id: 'verilog', index: '02', label: 'Verilog Lab' },
   { id: 'silicon', index: '03', label: 'Code → Silicon' },
-  { id: 'process', index: '04', label: 'Our Process' },
 ];
 
 export function scrollToSection(n: number) {
@@ -16,7 +15,7 @@ export function scrollToSection(n: number) {
   if (s) document.getElementById(s.id)?.scrollIntoView({ block: 'start' });
 }
 
-export function NavBar({ presenting, onTogglePresenting }: { presenting: boolean; onTogglePresenting: () => void }) {
+export function NavBar() {
   const [active, setActive] = useState(0);
   const [helpOpen, setHelpOpen] = useState(false);
 
@@ -54,16 +53,13 @@ export function NavBar({ presenting, onTogglePresenting }: { presenting: boolean
         </ol>
       </nav>
       <div className="nav-tools">
-        <button type="button" className={`nav-btn ${presenting ? 'on' : ''}`} aria-pressed={presenting} onClick={onTogglePresenting} title="Presentation mode hides integration notes and unfilled placeholders">
-          Present <kbd>P</kbd>
-        </button>
         <button type="button" className="nav-btn" aria-expanded={helpOpen} aria-controls="shortcut-help" onClick={() => setHelpOpen((o) => !o)}>
           Keys <kbd>?</kbd>
         </button>
         {helpOpen && (
           <div id="shortcut-help" className="nav-help" role="dialog" aria-label="Keyboard shortcuts">
             <dl>
-              <dt><kbd>0</kbd>–<kbd>4</kbd></dt><dd>jump to section</dd>
+              <dt><kbd>0</kbd>–<kbd>3</kbd></dt><dd>jump to section</dd>
               <dt><kbd>␣</kbd></dt><dd>run / pause artwork</dd>
               <dt><kbd>R</kbd></dt><dd>restart</dd>
               <dt><kbd>[</kbd> <kbd>]</kbd></dt><dd>previous / next pattern</dd>
@@ -71,28 +67,26 @@ export function NavBar({ presenting, onTogglePresenting }: { presenting: boolean
               <dt><kbd>G</kbd></dt><dd>cycle grid overlay</dd>
               <dt><kbd>←↑→↓</kbd></dt><dd>move pixel probe (focus image)</dd>
               <dt><kbd>Esc</kbd></dt><dd>clear probe</dd>
-              <dt><kbd>P</kbd></dt><dd>presentation mode</dd>
             </dl>
           </div>
         )}
       </div>
-      <SectionShortcuts onTogglePresenting={onTogglePresenting} onHelp={() => setHelpOpen((o) => !o)} />
+      <SectionShortcuts onHelp={() => setHelpOpen((o) => !o)} />
     </header>
   );
 }
 
-function SectionShortcuts({ onTogglePresenting, onHelp }: { onTogglePresenting: () => void; onHelp: () => void }) {
+function SectionShortcuts({ onHelp }: { onHelp: () => void }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement | null;
       if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
       if (e.metaKey || e.ctrlKey || e.altKey) return;
-      if (/^[0-4]$/.test(e.key)) scrollToSection(Number(e.key));
-      else if (e.key === 'p') onTogglePresenting();
+      if (/^[0-3]$/.test(e.key)) scrollToSection(Number(e.key));
       else if (e.key === '?') onHelp();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [onTogglePresenting, onHelp]);
+  }, [onHelp]);
   return null;
 }

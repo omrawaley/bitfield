@@ -43,9 +43,10 @@ real time from its coordinates — no stored artwork:
    also exactly what the Tiny Tapeout web VGA playground decodes):
    R1 = uo[0], G1 = uo[1], B1 = uo[2], VSYNC = uo[3], R0 = uo[4],
    G0 = uo[5], B0 = uo[6], HSYNC = uo[7] (syncs active low).
-3. Power up. Within a second the monitor shows the auto-VJ show: a new
-   mathematical pattern roughly every second, colours swapping, time
-   morphing the picture.
+3. Power up. Within a second the monitor shows the gallery: the
+   mathematical pattern advances roughly once per second (each with its
+   own default palette and shift) while the time phase morphs the picture
+   every frame.
 4. Flip the DIP switches (manual mode, `ui[4]=1`) to take over:
    * `ui[7:5]` — pattern index 0..6 (lattice, rings, hyperbola,
      interference, Sierpinski, weave, tartan).

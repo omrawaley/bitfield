@@ -24,7 +24,7 @@ export function Footer() {
               <span className="badge demo">Reference demo</span> formulas evaluated in JavaScript, not our hardware
             </li>
             <li>
-              <span className="badge hw">Verilog sim</span> pixels decoded from our design’s output pins (once connected)
+              <span className="badge hw">Verilog sim</span> pixels decoded from our design’s output pins
             </li>
             <li>
               <span className="badge muted">Illustration</span> teaching diagrams, not our layout

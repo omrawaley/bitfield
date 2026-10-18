@@ -3,6 +3,14 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  // The Verilog sources live in the repo-root src/ folder (the same files
+  // the Tiny Tapeout flow hardens), so the dev server must serve one
+  // level above the website root.
+  server: {
+    fs: {
+      allow: ['..'],
+    },
+  },
   test: {
     include: ['src/**/*.test.ts'],
   },

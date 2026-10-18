@@ -1,7 +1,8 @@
 /**
  * End-to-end check of the hardware simulator: compiles the real design
- * (website/hardware/src/project.v) with the vendored Verilator-WASM and
- * renders frames through the same VerilogSimulator used by the site.
+ * (src/project.v at the repo root, the file Tiny Tapeout hardens) with the
+ * vendored Verilator-WASM and renders frames through the same
+ * VerilogSimulator used by the site.
  */
 import { readFileSync } from 'node:fs';
 import { afterAll, beforeAll, expect, it, vi } from 'vitest';

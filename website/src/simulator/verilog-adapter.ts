@@ -81,7 +81,7 @@ export class VerilogSimulator implements ArtSimulator {
     const files = Object.keys(this.sources);
     if (files.length === 0) {
       throw new SimulatorUnavailableError('No Verilog sources found.', [
-        'Copy the design files into hardware/src/ (for example project.v and hvsync_generator.v).',
+        'The design sources are loaded from the repo-root src/ folder (for example project.v).',
         'Restart the dev server so Vite picks up the new files.',
       ]);
     }

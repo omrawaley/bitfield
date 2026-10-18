@@ -5,20 +5,17 @@ The art viewer has two pixel sources. Each is labelled on screen:
 | Source | What it is | Status |
 |---|---|---|
 | **Reference demo** | Our demo formulas evaluated in JavaScript with Verilog width rules | works now |
-| **Verilog sim** | Our design simulated cycle by cycle; pixels decoded from `uo_out` | needs the 3 steps below |
+| **Verilog sim** | Our design simulated cycle by cycle; pixels decoded from `uo_out` | works now (vendored Verilator-WASM) |
 
 If the Verilog simulation cannot run, the viewer shows the reason. It never falls back to the demo on its own.
 
-## 1. Add the sources
+## 1. Where the sources come from
 
-Copy the design files into `hardware/src/`, for example:
-
-```
-hardware/src/project.v            ← module tt_um_<name>(...) with the standard TT ports
-hardware/src/hvsync_generator.v
-```
-
-Vite picks up `*.v`, `*.sv`, `*.vh` and `*.svh` files automatically (restart the dev server after adding files). The top module is the first `module tt_um_*` found, or set `topModule` in `src/simulator/hardware-manifest.ts`.
+There is no copy to maintain: `src/simulator/hardware-manifest.ts` loads
+`*.v`, `*.sv`, `*.vh` and `*.svh` straight from the repo-root `src/` folder —
+the same files the Tiny Tapeout flow hardens. Add a file there and restart
+the dev server. The top module is the first `module tt_um_*` found, or set
+`topModule` in `src/simulator/hardware-manifest.ts`.
 
 The design must use the TinyVGA PMOD pinout:
 

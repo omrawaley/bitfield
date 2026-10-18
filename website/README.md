@@ -27,7 +27,7 @@ Keys: `0`–`4` sections · `Space` run/pause · `R` restart · `[` `]` pattern 
 ## What is real, and what isn't yet
 
 - **Reference demo**: our demo formulas evaluated in JavaScript. It is always labelled as *not hardware output*.
-- **Verilog sim**: our actual design, simulated. It is not connected yet. Follow [`hardware/README.md`](hardware/README.md). Until it is connected, selecting it shows an explicit error, never substitute output.
+- **Verilog sim**: our actual design, compiled to WASM with Verilator and simulated cycle by cycle. Sources are loaded straight from the repo-root `src/` folder — the same files Tiny Tapeout hardens. Setup notes: [`hardware/README.md`](hardware/README.md).
 - **Illustrations** in section 03 use a 2-bit XOR example and are labelled as not our design.
 - **Physical layout viewer**: blank until a real GDS render is configured.
 
@@ -35,7 +35,7 @@ Keys: `0`–`4` sections · `Space` run/pause · `R` restart · `[` `]` pattern 
 
 | File | Content |
 |---|---|
-| `hardware/src/*.v` | the design's Verilog sources |
+| `../src/*.v` | the design's Verilog sources (single copy, shared with the Tiny Tapeout flow) |
 | `src/simulator/hardware-manifest.ts` | what each `ui_in` bit does (controls are generated from this) |
 | `src/simulator/backend.ts` | HDL simulation backend registration (tested snippet in `hardware/README.md`) |
 | `src/components/chip-viewer/layout-source.ts` | GDS render image (2D viewer) / glTF model (planned 3D) |

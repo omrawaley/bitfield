@@ -19,8 +19,8 @@ export interface HardwareManifest {
 }
 
 export const hardwareManifest: HardwareManifest = {
-  name: 'MATHHACKS demoscene (real Verilog)',
-  topModule: 'tt_um_mathhacks_art',
+  name: 'BITFIELD demoscene (real Verilog)',
+  topModule: 'tt_um_omrawaley_bitfield',
   inputs: [
     {
       id: 'manual',
@@ -78,6 +78,6 @@ export const hardwareManifest: HardwareManifest = {
 
 export const hardwareSources: Record<string, string> = Object.fromEntries(
   Object.entries(
-    import.meta.glob('/hardware/src/*.{v,sv,vh,svh}', { query: '?raw', import: 'default', eager: true }) as Record<string, string>,
+    import.meta.glob('../../../src/*.{v,sv,vh,svh}', { query: '?raw', import: 'default', eager: true }) as Record<string, string>,
   ).map(([path, src]) => [path.split('/').pop()!, src]),
 );

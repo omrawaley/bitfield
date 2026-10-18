@@ -1,0 +1,8 @@
+sim_build/
+__pycache__/
+output/
+results.xml
+tb.fst
+tb.vcd
+*.ppm
+gate_level_netlist.v

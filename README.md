@@ -25,7 +25,7 @@ pattern, palette and speed, so the show never stands still.
   `https://vga-playground.com/?repo=<repo url>` — the playground loads
   `info.yaml` and simulates `src/` directly (standard Tiny VGA PMOD pinout).
 
-## How it works in one paragraph
+## How it works
 
 The VGA timing generator sweeps `(x,y)` over the frame. Each pattern is a
 small equation on those coordinates: `((x>>s) ^ (y>>s)) + t` nests XOR
@@ -72,9 +72,10 @@ directly — run `npm install && npm run dev` inside `website/`.
 
 Every push runs the Tiny Tapeout GDS action (LibreLane) which hardens the
 design and renders the layout. The action's `viewer` job publishes the GDS
-and the render to GitHub Pages (enable Pages → source "GitHub Actions"
-once), and the website's Physical Layout section shows the rendered
+and the render to GitHub Pages, and the website's Physical Layout section shows the rendered
 layout once it is published.
+
+Visit omrawaley.github.io/bitfield/ to see the chip's GDS render.
 
 ## Datasheet
 

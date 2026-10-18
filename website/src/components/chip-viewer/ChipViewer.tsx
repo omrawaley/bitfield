@@ -146,7 +146,7 @@ export function ChipViewer({ source = layoutSource }: { source?: ChipLayoutSourc
             <h4 className="label">Integration</h4>
             <ol>
               <li>
-                Every push runs the <code>gds</code> workflow; its <code>viewer</code> job publishes <code>gds_render.png</code>, the <code>.gds</code> and the <code>.oas</code> to GitHub Pages.
+                Every push runs the <code>gds</code> workflow; its <code>pages</code> job builds this website and publishes it with <code>gds_render.png</code>, the <code>.gds</code> and the <code>.oas</code> under <code>/gds/</code> on GitHub Pages.
               </li>
               <li>
                 The published image URL is configured in <code>src/components/chip-viewer/layout-source.ts</code>; the 2D viewer turns on by itself after the first deploy.

@@ -37,11 +37,84 @@ jobs:
       - name: GL test
         uses: TinyTapeout/tt-gds-action/gl_test@ttsky26d
 
-  viewer:
+  pages:
     needs: gds
     runs-on: ubuntu-24.04
     permissions:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: TinyTapeout/tt-gds-action/viewer@ttsky26d
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Download GDS render (png)
+        uses: actions/download-artifact@v7
+        with:
+          name: gds_render
+          path: _site/gds
+
+      - name: Download tt_submission
+        uses: actions/download-artifact@v7
+        with:
+          name: tt_submission
+          path: tt_submission
+
+      - name: Copy GDS and OAS next to the viewer page
+        shell: bash
+        run: |
+          cp tt_submission/*.gds _site/gds/tinytapeout.gds
+          cp tt_submission/*.oas _site/gds/tinytapeout.oas
+
+      - name: Generate the /gds viewer page
+        shell: bash
+        run: |
+          cat > _site/gds/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>BITFIELD — GDS viewer</title>
+          </head>
+          <body>
+            <p>Opening the 3D GDS viewer…</p>
+            <script>
+              location.replace(
+                'https://gds-viewer.tinytapeout.com/?pdk=sky130A&model=' +
+                  encodeURIComponent(location.href.replace(/index\.html$/, '') + 'tinytapeout.oas')
+              );
+            </script>
+          </body>
+          </html>
+          EOF
+
+      - name: Setup node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Build website
+        working-directory: website
+        env:
+          PAGES_BASE: /bitfield/
+        run: |
+          npm ci
+          npm run build
+
+      - name: Assemble the Pages site
+        shell: bash
+        run: cp -r website/dist/. _site/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

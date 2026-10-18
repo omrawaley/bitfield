@@ -71,11 +71,15 @@ directly — run `npm install && npm run dev` inside `website/`.
 ## Seeing the chip
 
 Every push runs the Tiny Tapeout GDS action (LibreLane) which hardens the
-design and renders the layout. The action's `viewer` job publishes the GDS
-and the render to GitHub Pages, and the website's Physical Layout section shows the rendered
-layout once it is published.
+design and renders the layout. The `pages` job then builds `website/` and
+deploys it to GitHub Pages together with the viewer files:
 
-Visit omrawaley.github.io/bitfield/ to see the chip's GDS render.
+- <https://omrawaley.github.io/bitfield/> — the website (its Physical
+  Layout section shows the published GDS render)
+- <https://omrawaley.github.io/bitfield/gds/> — the 3D GDS viewer for the
+  hardened chip (also links to the Tiny Tapeout GDS explorer)
+
+Pages has to be enabled once: Settings → Pages → Source "GitHub Actions".
 
 ## Datasheet
 

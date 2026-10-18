@@ -14,7 +14,7 @@ npm run build      # type-check + production build into dist/
 | # | Section | What it does |
 |---|---|---|
 | 00 | Experience | VGA viewport (640×480, RGB222), run/pause/restart, patterns, parameters, colour maps, loupe, grid, pixel probe, fullscreen, PNG export |
-| 00·B | Physical Layout | Layout viewer right below the artwork (2D pan/zoom once a GDS render is configured; 3D planned) |
+| 00·B | Physical Layout | Layout viewer right below the artwork (2D pan/zoom of the render published by CI, plus links to the Tiny Tapeout 3D viewer / GDS explorer) |
 | 01 | The Mathematics | Bitwise ALU experiment, formula → picture explorer, step-by-step pixel inspector |
 | 02 | Verilog Lab | Gates, shifts, registers/clock with waveforms, editable pixel expression |
 | 03 | Code → Silicon | Six-stage flow explainer with illustrations and artifact slots, linking back up to the layout viewer |
@@ -29,7 +29,7 @@ Keys: `0`–`4` sections · `Space` run/pause · `R` restart · `[` `]` pattern 
 - **Reference demo**: our demo formulas evaluated in JavaScript. It is always labelled as *not hardware output*.
 - **Verilog sim**: our actual design, compiled to WASM with Verilator and simulated cycle by cycle. Sources are loaded straight from the repo-root `src/` folder — the same files Tiny Tapeout hardens. Setup notes: [`hardware/README.md`](hardware/README.md).
 - **Illustrations** in section 03 use a 2-bit XOR example and are labelled as not our design.
-- **Physical layout viewer**: blank until a real GDS render is configured.
+- **Physical layout viewer**: shows the layout render published by the `pages` job of the GDS workflow (GitHub Pages); it stays empty until the first successful build has been deployed.
 
 ## Where to fill in real content
 
@@ -38,7 +38,7 @@ Keys: `0`–`4` sections · `Space` run/pause · `R` restart · `[` `]` pattern 
 | `../src/*.v` | the design's Verilog sources (single copy, shared with the Tiny Tapeout flow) |
 | `src/simulator/hardware-manifest.ts` | what each `ui_in` bit does (controls are generated from this) |
 | `src/simulator/backend.ts` | HDL simulation backend registration (tested snippet in `hardware/README.md`) |
-| `src/components/chip-viewer/layout-source.ts` | GDS render image (2D viewer) / glTF model (planned 3D) |
+| `src/components/chip-viewer/layout-source.ts` | published GDS render URL (2D viewer) and viewer links |
 | `src/data/silicon-stages.ts` | per-stage screenshots and report excerpts |
 | `src/data/project-process.ts` | engineering journal entries |
 | `src/data/project.ts` | project name (working title), team, links |

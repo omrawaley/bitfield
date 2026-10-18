@@ -9,7 +9,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-This one-tile design renders live digital art on a VGA screen (640x480 at
+This 1x2-tile design renders live digital art on a VGA screen (640x480 at
 60 Hz, pixel clock = the tile clock). Every pixel shown is computed in
 real time from its coordinates — no stored artwork:
 

@@ -1,6 +1,6 @@
 # BITFIELD — MathHacks 2026.
 
-A one-tile Tiny Tapeout chip that renders live mathematical art on a VGA
+A 1x2 Tiny Tapeout chip that renders live mathematical art on a VGA
 screen. There is no framebuffer and no stored artwork: every pixel is
 evaluated in real time by a bitwise/sinusoidal function of `(x, y, t)`.
 A 16-bit LFSR acts as a virtual VJ — about once per second it re-rolls the

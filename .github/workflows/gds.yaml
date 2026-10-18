@@ -65,13 +65,18 @@ jobs:
       - name: Copy GDS and OAS next to the viewer page
         shell: bash
         run: |
-          cp tt_submission/*.gds _site/gds/tinytapeout.gds
-          cp tt_submission/*.oas _site/gds/tinytapeout.oas
+          GDS=$(find tt_submission -name '*.gds' -print -quit)
+          OAS=$(find tt_submission -name '*.oas' -print -quit)
+          test -n "$GDS" && test -n "$OAS"
+          cp "$GDS" _site/gds/tinytapeout.gds
+          cp "$OAS" _site/gds/tinytapeout.oas
 
       - name: Generate the /gds viewer page
         shell: bash
         run: |
-          cat > _site/gds/index.html << 'EOF'
+          PDK=$(find tt_submission -name pdk.json -exec jq -r '.PDK' {} \; -quit)
+          test -n "$PDK"
+          cat > _site/gds/index.html << EOF
           <!DOCTYPE html>
           <html lang="en">
           <head>
@@ -83,8 +88,8 @@ jobs:
             <p>Opening the 3D GDS viewer…</p>
             <script>
               location.replace(
-                'https://gds-viewer.tinytapeout.com/?pdk=sky130A&model=' +
-                  encodeURIComponent(location.href.replace(/index\.html$/, '') + 'tinytapeout.oas')
+                'https://gds-viewer.tinytapeout.com/?pdk=${PDK}&model=' +
+                  encodeURIComponent(location.href.replace(/index\.html\$/, '') + 'tinytapeout.oas')
               );
             </script>
           </body>

@@ -1,0 +1,45 @@
+:root {
+  --bg: #0f110f;
+  --surface: #151815;
+  --surface-2: #1b1f1b;
+  --surface-3: #222722;
+  --border: #2c322c;
+  --border-strong: #3d453d;
+
+  --text: #e8eae3;
+  --text-2: #9aa399;
+  --text-3: #6a7369;
+
+  --green: #a6d875;
+  --green-dim: #4d6638;
+  --orange: #d8a16c;
+  --orange-dim: #6b5034;
+  --red: #d96b65;
+  --red-dim: #5e2f2c;
+  --cyan: #79c6c0;
+
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-sans: 'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
+
+  --fs-micro: 10px;
+  --fs-label: 11px;
+  --fs-small: 12px;
+  --fs-body: 13px;
+  --fs-prose: 15px;
+  --fs-h3: 15px;
+  --fs-h2: 22px;
+
+  --nav-h: 40px;
+  --gutter: 24px;
+  --radius: 2px;
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --t-fast: 90ms;
+  --t-med: 180ms;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --gutter: 16px;
+  }
+}

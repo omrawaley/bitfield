@@ -1,0 +1,173 @@
+.pi {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: var(--fs-small);
+}
+.pi section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pi h4 {
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+.pi-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.pi-swatch {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-strong);
+  flex: none;
+}
+.pi-coord {
+  font-size: var(--fs-body);
+  color: var(--text);
+}
+.pi-sub {
+  color: var(--orange);
+}
+
+.bin-str {
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.bin-str .b0 {
+  color: var(--text-3);
+}
+.bin-str .b1 {
+  color: var(--text);
+}
+.bin-str.result .b1 {
+  color: var(--green);
+}
+.bin-str .nib {
+  margin-left: 0.35em;
+}
+
+.pi-dec {
+  color: var(--orange);
+  font-variant-numeric: tabular-nums;
+}
+.pi-dim {
+  color: var(--text-3);
+}
+
+.pi-inputs {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 12px;
+  margin: 0;
+}
+.pi-inputs dt {
+  color: var(--text);
+}
+.pi-inputs dd {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+.pi-inputs dd .pi-dec {
+  min-width: 3ch;
+}
+
+.pi-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border);
+}
+.pi-step {
+  padding: 6px 0 8px 12px;
+  position: relative;
+}
+.pi-step + .pi-step {
+  border-top: 1px dotted var(--border);
+}
+.pi-step-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+.pi-n {
+  color: var(--text-3);
+}
+.pi-op {
+  color: var(--cyan);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.pi-src {
+  color: var(--text-2);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pi-w {
+  color: var(--text-3);
+  font-size: var(--fs-micro);
+}
+.pi-rows {
+  display: grid;
+  grid-template-columns: 2.4ch auto;
+  justify-content: start;
+  gap: 1px 8px;
+  margin-top: 4px;
+}
+.pi-k {
+  color: var(--text-3);
+  text-align: right;
+}
+.pi-note {
+  color: var(--text-3);
+  font-size: var(--fs-label);
+  margin-top: 4px;
+  font-family: var(--font-sans);
+  line-height: 1.45;
+}
+
+.pi-assign {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  align-items: baseline;
+}
+
+.pi-color {
+  border-collapse: collapse;
+  width: 100%;
+}
+.pi-color th,
+.pi-color td {
+  padding: 3px 8px 3px 0;
+  text-align: left;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.pi-color code {
+  color: var(--text-2);
+}
+.ch-R {
+  color: #e06c6c;
+}
+.ch-G {
+  color: var(--green);
+}
+.ch-B {
+  color: #7ea6e0;
+}
+
+.pi.compact .pi-rows {
+  font-size: var(--fs-label);
+}

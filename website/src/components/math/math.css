@@ -1,0 +1,337 @@
+.primitives {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+  border: 1px solid var(--border);
+}
+.primitive {
+  padding: 16px 18px 18px;
+  border-right: 1px solid var(--border);
+}
+.primitive:last-child {
+  border-right: 0;
+}
+.primitive dt {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.prim-sym {
+  font-size: 18px;
+  color: var(--orange);
+}
+.primitive dd {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+@media (max-width: 900px) {
+  .primitives {
+    grid-template-columns: 1fr 1fr;
+  }
+  .primitive:nth-child(2) {
+    border-right: 0;
+  }
+  .primitive:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+.alu-body {
+  display: grid;
+  grid-template-columns: auto minmax(240px, 1fr);
+  gap: 32px;
+  padding: 20px;
+}
+.alu-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.alu-row {
+  display: grid;
+  grid-template-columns: 22px auto 42px 48px;
+  align-items: center;
+  gap: 12px;
+}
+.alu-name {
+  color: var(--text-2);
+  text-align: right;
+}
+.alu-bits {
+  display: flex;
+  gap: 4px;
+}
+.alu-col {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  padding: 2px 0;
+  border-radius: 1px;
+}
+.alu-col.hover {
+  background: var(--surface-3);
+}
+.alu-col .bit {
+  width: 26px;
+}
+.alu-index {
+  font-size: var(--fs-micro);
+  color: var(--text-3);
+}
+.alu-col.weight {
+  font-size: 9px;
+}
+.alu-dec {
+  color: var(--orange);
+  text-align: right;
+}
+.alu-hex {
+  color: var(--text-3);
+}
+.alu-index .alu-dec,
+.alu-index .alu-hex {
+  color: var(--text-3);
+  font-size: var(--fs-micro);
+}
+.alu-shift {
+  grid-column: span 3;
+  max-width: 300px;
+}
+.alu-rule {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 6px 0 6px 34px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+  color: var(--text-3);
+  font-size: var(--fs-small);
+}
+.alu-op {
+  color: var(--orange);
+  font-size: 15px;
+  min-width: 2ch;
+}
+.alu-result .alu-name {
+  color: var(--orange);
+}
+.alu-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-left: 1px solid var(--border);
+  padding-left: 24px;
+}
+.alu-side h4 {
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+.alu-code {
+  display: block;
+  font-size: var(--fs-small);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.alu-math {
+  font-size: var(--fs-small);
+  color: var(--text-2);
+}
+.alu-hint {
+  font-size: var(--fs-small);
+  color: var(--cyan);
+  min-height: 3em;
+}
+.alu-legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--fs-label);
+  color: var(--text-3);
+}
+.alu-legend .lg {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  vertical-align: -1px;
+  border: 1px solid var(--border-strong);
+}
+.lg.changed {
+  box-shadow: inset 0 -3px 0 var(--orange);
+}
+.lg.dropped {
+  border-color: var(--red);
+  background: var(--red-dim);
+}
+.lg.filled {
+  border: 1px dashed var(--cyan);
+}
+@media (max-width: 860px) {
+  .alu-body {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+  .alu-side {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+  .alu-row {
+    grid-template-columns: 16px auto 32px;
+    gap: 6px;
+  }
+  .alu-hex {
+    display: none;
+  }
+  .alu-col {
+    width: 28px;
+  }
+}
+@media (max-width: 420px) {
+  .alu-bits {
+    gap: 1px;
+  }
+  .alu-col {
+    width: 26px;
+  }
+  .alu-col .bit {
+    width: 24px;
+  }
+}
+
+.pattern-lab {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.pl-formulas {
+  padding: 12px 16px 0;
+}
+.pl-formulas code {
+  font-size: var(--fs-small);
+}
+.pl-view {
+  padding: 14px 16px 0;
+}
+.pl-screen {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  aspect-ratio: 4 / 3;
+  background: #000;
+  outline: 1px solid var(--border-strong);
+  cursor: crosshair;
+}
+.pl-screen:focus-visible {
+  outline-color: var(--orange);
+}
+.pl-screen canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.pl-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.5) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 1px, transparent 1px);
+  background-size: calc(100% / 128) calc(100% / 96);
+}
+.pl-sel {
+  position: absolute;
+  outline: 2px solid var(--orange);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+.pl-axis {
+  display: flex;
+  justify-content: space-between;
+  max-width: 720px;
+  font-size: var(--fs-micro);
+  color: var(--text-3);
+  padding-top: 4px;
+}
+.pl-expr {
+  padding: 12px 16px 0;
+  font-size: 14px;
+}
+.pl-explain {
+  padding: 8px 16px 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-2);
+  max-width: 72ch;
+  line-height: 1.55;
+}
+.pl-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+  padding: 18px 16px 18px;
+  margin-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.pl-time {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+}
+.pl-time .range {
+  flex: 1;
+}
+.pl-maps {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+}
+.pl-mapnote {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  color: var(--text-3);
+  flex-basis: 100%;
+}
+.pl-controls > .toggle {
+  justify-self: start;
+}
+.pl-inspector {
+  position: sticky;
+  top: calc(var(--nav-h) + 12px);
+  max-height: calc(100svh - var(--nav-h) - 24px);
+  display: flex;
+  flex-direction: column;
+}
+.pl-inspector-body {
+  padding: 16px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+@media (max-width: 1000px) {
+  .pattern-lab {
+    grid-template-columns: 1fr;
+  }
+  .pl-inspector {
+    position: static;
+    max-height: none;
+  }
+}
+@media (max-width: 600px) {
+  .pl-controls {
+    grid-template-columns: 1fr;
+  }
+}
